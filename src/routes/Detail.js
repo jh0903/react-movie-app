@@ -34,6 +34,8 @@ function Detail() {
             runtime={movie.runtime}
             year={movie.year}
             genres={movie.genres}
+            description_intro={movie.description_intro}
+            url={movie.url}
           />
         </div>
       )}

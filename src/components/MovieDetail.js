@@ -1,28 +1,49 @@
 import PropTypes from "prop-types";
+import styles from "./MovieDetail.module.css";
+import { Link } from "react-router-dom";
 
 function MovieDetail({
   coverImg,
   title,
   genres,
+  url,
   like_count,
   rating,
   runtime,
   year,
+  description_intro,
 }) {
   return (
     <>
-      <div>
-        <img src={coverImg}></img>
-        <h1>{title}</h1>
-        <p>rating: {rating}</p>
-        <p>
-          {genres.map((g) => (
-            <li>{g}</li>
-          ))}
-        </p>
-        <p>{runtime} min</p>
-        <p>❤️ {like_count}</p>
-        <p>year: {year}</p>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <div className={styles.description}>
+            <img src={coverImg} className={styles.img}></img>
+            <div>
+              <h1 className={styles.title}>{title}</h1>
+              <div className={styles.info}>
+                <p>{year} </p> &nbsp;
+                <p>{runtime} min </p>&nbsp;
+                <p>⭐ {rating} </p>&nbsp;
+                <p>❤️ {like_count} </p>
+              </div>
+
+              <p className={styles.genre}>
+                {genres.map((g) => (
+                  <li className={styles.li}>{g}</li>
+                ))}
+              </p>
+              <p>
+                {description_intro.length <= 800
+                  ? description_intro
+                  : `${description_intro.slice(0, 800)}...`}
+              </p>
+              <a href={url} className={styles.btn}>
+                More
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
