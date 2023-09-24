@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MovieDetail from "../components/MovieDetail";
 import Spinner from "../components/Spinner";
 import styles from "./Home.module.css";
+import { IMAGE_BASE_URL, api_key } from "../components/config";
 
 function Detail() {
   const { id } = useParams();
@@ -11,10 +12,11 @@ function Detail() {
 
   const getMovie = async () => {
     const json = await (
-      await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+      await fetch(`
+      https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=ko-KR`)
     ).json();
-    console.log(json.data.movie);
-    setMovie(json.data.movie);
+    console.log(json);
+    setMovie(json);
     setLoading(false);
   };
   useEffect(() => {
@@ -28,14 +30,14 @@ function Detail() {
         <div className={styles.container}>
           <MovieDetail
             title={movie.title}
-            coverImg={movie.medium_cover_image}
-            like_count={movie.like_count}
-            rating={movie.rating}
+            coverImg={`${IMAGE_BASE_URL}/original/${movie.poster_path}`}
+            like_count={movie.popularity}
+            rating={movie.vote_average}
             runtime={movie.runtime}
-            year={movie.year}
-            genres={movie.genres}
-            description_intro={movie.description_intro}
-            url={movie.url}
+            year={movie.release_date}
+            genres={JSON.stringify(movie.genres)}
+            description_intro={movie.overview}
+            url={movie.homepage}
           />
         </div>
       )}

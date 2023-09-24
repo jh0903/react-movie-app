@@ -27,16 +27,12 @@ function MovieDetail({
                 <p>❤️ {like_count} </p>
               </div>
 
-              <p className={styles.genre}>
+              {/* <p className={styles.genre}>
                 {genres.map((g) => (
                   <li className={styles.li}>{g}</li>
                 ))}
-              </p>
-              <p>
-                {description_intro.length <= 800
-                  ? description_intro
-                  : `${description_intro.slice(0, 800)}...`}
-              </p>
+              </p> */}
+              <p>{description_intro}</p>
               <a href={url} className={styles.btn}>
                 More
               </a>
@@ -53,10 +49,10 @@ MovieDetail.propTypes = {
   title: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   url: PropTypes.string.isRequired,
-  like_count: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  runtime: PropTypes.number.isRequired,
-  year: PropTypes.number.isRequired,
+  like_count: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  runtime: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
   description_intro: PropTypes.string.isRequired,
 };
 
