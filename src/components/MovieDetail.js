@@ -27,11 +27,11 @@ function MovieDetail({
                 <p>❤️ {like_count} </p>
               </div>
 
-              {/* <p className={styles.genre}>
-                {genres.map((g) => (
-                  <li className={styles.li}>{g}</li>
+              <p className={styles.genre}>
+                {JSON.parse(genres).map((g) => (
+                  <li className={styles.li}>{g.name}</li>
                 ))}
-              </p> */}
+              </p>
               <p>{description_intro}</p>
               <a href={url} className={styles.btn}>
                 More
