@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import styles from "./MovieDetail.module.css";
-import { Link } from "react-router-dom";
 
 function MovieDetail({
   coverImg,
@@ -18,8 +17,8 @@ function MovieDetail({
       <div className={styles.container}>
         <div className={styles.card}>
           <div className={styles.description}>
-            <img src={coverImg} className={styles.img}></img>
-            <div>
+            <img src={coverImg} className={styles.img} alt="coverImage"></img>
+            <div style={{ width: "100%" }}>
               <h1 className={styles.title}>{title}</h1>
               <div className={styles.info}>
                 <p>{year} </p> &nbsp;
@@ -53,6 +52,12 @@ MovieDetail.propTypes = {
   coverImg: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  url: PropTypes.string.isRequired,
+  like_count: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  runtime: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  description_intro: PropTypes.string.isRequired,
 };
 
 export default MovieDetail;
