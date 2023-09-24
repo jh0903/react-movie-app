@@ -29,7 +29,9 @@ function MovieDetail({
 
               <p className={styles.genre}>
                 {JSON.parse(genres).map((g) => (
-                  <li className={styles.li}>{g.name}</li>
+                  <li key={g.id} className={styles.li}>
+                    {g.name}
+                  </li>
                 ))}
               </p>
               <p>{description_intro}</p>
@@ -47,11 +49,11 @@ function MovieDetail({
 MovieDetail.propTypes = {
   coverImg: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genres: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  like_count: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
-  runtime: PropTypes.string.isRequired,
+  like_count: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  runtime: PropTypes.number.isRequired,
   year: PropTypes.string.isRequired,
   description_intro: PropTypes.string.isRequired,
 };
