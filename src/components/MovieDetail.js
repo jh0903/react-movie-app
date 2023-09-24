@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./MovieDetail.module.css";
+import { IMAGE_BASE_URL } from "./config";
 
 function MovieDetail({
   coverImg,
@@ -11,14 +12,23 @@ function MovieDetail({
   runtime,
   year,
   description_intro,
+  backdropPath,
 }) {
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.card}>
-          <div className={styles.description}>
+      <div
+        style={{
+          backgroundImage: `url("${IMAGE_BASE_URL}original${backdropPath}")`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+        }}
+      >
+        <div className={styles.container}>
+          <div className={styles.card}>
             <img src={coverImg} className={styles.img} alt="coverImage"></img>
-            <div style={{ width: "100%" }}>
+            <div className={styles.description}>
               <h1 className={styles.title}>{title}</h1>
               <div className={styles.info}>
                 <p>{year} </p> &nbsp;
@@ -35,9 +45,9 @@ function MovieDetail({
                 ))}
               </p>
               <p>{description_intro}</p>
-              <a href={url} className={styles.btn}>
+              {/* <a href={url} className={styles.btn}>
                 More
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -56,6 +66,7 @@ MovieDetail.propTypes = {
   runtime: PropTypes.number.isRequired,
   year: PropTypes.string.isRequired,
   description_intro: PropTypes.string.isRequired,
+  backdrop_path: PropTypes.string.isRequired,
 };
 
 export default MovieDetail;

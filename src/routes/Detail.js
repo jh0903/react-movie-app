@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieDetail from "../components/MovieDetail";
 import Spinner from "../components/Spinner";
-import styles from "./Home.module.css";
 import { IMAGE_BASE_URL, api_key } from "../components/config";
 
 function Detail() {
@@ -16,6 +15,7 @@ function Detail() {
       https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=ko-KR`)
     ).json();
     console.log(json);
+    console.log(json.backdrop_path);
     setMovie(json);
     setLoading(false);
   };
@@ -27,7 +27,7 @@ function Detail() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className={styles.container}>
+        <div>
           <MovieDetail
             title={movie.title}
             coverImg={`${IMAGE_BASE_URL}/original/${movie.poster_path}`}
@@ -38,6 +38,7 @@ function Detail() {
             genres={JSON.stringify(movie.genres)}
             description_intro={movie.overview}
             url={movie.homepage}
+            backdropPath={movie.backdrop_path}
           />
         </div>
       )}
